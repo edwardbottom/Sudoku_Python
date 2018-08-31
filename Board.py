@@ -1,6 +1,6 @@
 from Cell import Cell
 import pandas as pd
-
+import os
 
 class Board:
   def __init__(self, file_name):
@@ -45,6 +45,8 @@ class Board:
 
   def load(self, file_name):
     self.board = []
+    if not os.path.isfile(file_name):
+      return False
     vals = pd.read_csv(file_name)
     vals_length = vals.count().astype(int)
     counter = 0
