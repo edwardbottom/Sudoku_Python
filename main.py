@@ -58,6 +58,7 @@ class Window(QtWidgets.QWidget):
 					self.sudokuGrid.item(row, col).setText("")
 					
 					cell.setValue(0)
+		# defaultBoard.clear()
 
 	
 	def change(self, row, col):
@@ -71,7 +72,7 @@ class Window(QtWidgets.QWidget):
 		else:
 			cell.setValue(0)
 
-		self.updateGrid(defaultBoard)
+		# self.updateGrid(defaultBoard)
 		
 	
 	def save(self):

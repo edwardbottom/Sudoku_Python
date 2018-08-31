@@ -57,7 +57,7 @@ class Board:
         row.append(Cell(val,isPlay))
         counter += 2
       self.board.append(row)
-      return True
+    return True
   
   def save(self, file_name):
     vals = []
@@ -81,7 +81,7 @@ class Board:
     s = set()
     for y in range(0,9):
       for x in range(0,9):
-        if self.board[x][y].value > 9 or self.board[x][y].value < 1 or not s.add(self.board[x][y].value):
+        if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or not s.add(self.board[x][y].value):
           return False
       s.clear()
     return True
@@ -90,7 +90,7 @@ class Board:
     s = set()
     for x in range(0,9):
         for y in range(0,9):
-            if self.board[x][y].value > 9 or self.board[x][y].value < 1 or not s.add(self.board[x][y].value):
+            if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or not s.add(self.board[x][y].value):
                 return False
         s.clear()
     return True
@@ -100,14 +100,14 @@ class Board:
     #upper left box
     for x in range(0,3):
         for y in range(0,3):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
     #upper middle box
     for x in range(3,6):
         for y in range(0,3):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
@@ -121,42 +121,42 @@ class Board:
     #middle left box
     for x in range(0,3):
         for y in range(3,6):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
     #middle middle box
     for x in range(3,6):
         for y in range(3,6):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
     #middle right box
     for x in range(6,9):
         for y in range(3,6):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
     #bottom left box
     for x in range(0,3):
         for y in range(6,9):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
     #bottom middle box
     for x in range(3,6):
         for y in range(6,9):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not set.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not set.add(self.board[y][x].value):
                 return False
     set.clear()
 
     #bottom right box
     for x in range(6,9):
         for y in range(6,9):
-            if self.board[y][x].value > 9 or self.board[y][x].value < 1 or not s.add(self.board[y][x].value):
+            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
                 return False
     s.clear()
 
@@ -166,7 +166,6 @@ class Board:
     return self.isValidBox() and self.isValidHorz() and self.isValidVert()
 
 
-# Board().printBoard()
 
 
 
