@@ -54,7 +54,7 @@ class Window(QtWidgets.QWidget):
 				cell = defaultBoard.board[row][col]
 
 				# if cell.isPlayable:
-				if cell.isPlayable():
+				if cell.isPlayable:
 					self.sudokuGrid.item(row, col).setText("")
 					
 					cell.setValue(0)
