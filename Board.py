@@ -12,9 +12,10 @@ class Board:
       row=[]
       for y in range(0,9):
         val = vals['b'][counter]
+        isPlay = vals['b'][counter+1]
         # val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
-        row.append(Cell(val,False))
-        counter += 1
+        row.append(Cell(val,isPlay))
+        counter += 2
       self.board.append(row)
 
   def printBoard(self):
@@ -35,9 +36,10 @@ class Board:
     for x in range(0,9): 
       row=[]
       for y in range(0,9):
-        val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
-        row.append(Cell(val,False))
-        counter += 1
+        val = vals['b'][counter]
+        isPlay = vals['b'][counter+1]
+        row.append(Cell(val,isPlay))
+        counter += 2
       self.board.append(row)
 
   def load(self):
@@ -50,8 +52,9 @@ class Board:
       for y in range(0,9):
         # val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
         val = vals['b'][counter]
-        row.append(Cell(val,False))
-        counter += 1
+        isPlay = vals['b'][counter+1]
+        row.append(Cell(val,isPlay))
+        counter += 2
       self.board.append(row)
   
   def save(self, file_name):
@@ -59,7 +62,9 @@ class Board:
     for x in range(0,9): 
       for y in range(0,9):
         val = self.board[x][y].value
+        isPlay = self.board[x][y].isPlayable()
         vals.append(val)
+        vals.append(isPlay)
     df = pd.DataFrame(vals)
     df.columns = ['b']
     df.to_csv(file_name)
@@ -151,4 +156,9 @@ class Board:
 
   def isCorrect(self):
     return self.isValidBox() and self.isValidHorz() and self.isValidVert()
+
+
+Board().printBoard()
+
+
 
