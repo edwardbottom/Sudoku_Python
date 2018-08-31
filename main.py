@@ -1,7 +1,7 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtGui, QtWidgets, QtCore
-from Board import *
+from Board import Board
 
 
 class Window(QtWidgets.QWidget):
@@ -11,6 +11,7 @@ class Window(QtWidgets.QWidget):
 		super(Window, self).__init__()
 		loadUi('sudoku.ui', self)
 		
+		# self.sudokuGrid.setItemDelegate(Delegate())
 		self.quitButton.clicked.connect(self.quit)
 		self.clearButton.clicked.connect(self.clear)
 		self.saveButton.clicked.connect(self.save)
@@ -25,7 +26,7 @@ class Window(QtWidgets.QWidget):
 		for row in range(0,9):
 			for col in range(0,9):
 				cell = board.board[row][col]
-				value = cell.value
+				value = cell.getValue()
 
 				item = QtWidgets.QTableWidgetItem()
 				item.setData(QtCore.Qt.EditRole, str(value))
@@ -36,8 +37,8 @@ class Window(QtWidgets.QWidget):
 				else: 
 					self.sudokuGrid.setItem(row, col, QtWidgets.QTableWidgetItem(0))
 
-				# if not cell.isPlayable:
-				# 	self.sudokuGrid.item(row, col).setFlags(QtCore.Qt.ItemIsEnabled)
+				if not cell.isPlayable:
+					self.sudokuGrid.item(row, col).setFlags(QtCore.Qt.ItemIsEnabled)
 				
 		self.show()
 
@@ -53,10 +54,10 @@ class Window(QtWidgets.QWidget):
 				cell = defaultBoard.board[row][col]
 
 				# if cell.isPlayable:
-				if not cell.isPlayable:
+				if cell.isPlayable():
 					self.sudokuGrid.item(row, col).setText("")
 					
-					cell.value = 0
+					cell.setValue(0)
 
 	
 	def change(self, row, col):
@@ -66,17 +67,21 @@ class Window(QtWidgets.QWidget):
 
 		if number != '':
 			number = int(number)	
-			cell.value = number
+			cell.setValue(number)
 		else:
-			cell.value = 0
+			cell.setValue(0)
+
+		self.updateGrid(defaultBoard)
 		
 	
 	def save(self):
-		defaultBoard.save('test.csv')
+		filename = self.saveText.text()
+		print(filename)
+		defaultBoard.save(filename)
 
 	def load(self):
-		defaultBoard.load()
-		# defaultBoard.printBoard()
+		filename = self.loadText.text()
+		defaultBoard.load(filename)
 		self.updateGrid(defaultBoard)
 
 	def submit(self):
@@ -88,8 +93,15 @@ class Window(QtWidgets.QWidget):
 			QtWidgets.QMessageBox().about(self, "Oops", "Not a valid solution.  Click OK to keep trying.")
 
 
+
+# class Delegate(QtWidgets.QItemDelegate):
+
+# 	lineEdit = QtWidgets.QLineEdit()
+# 	# validator = QtGui.QIntValidator(1,9, QtWidgets.QLineEdit())
+# 	pass
+
 if __name__ == '__main__':
-	defaultBoard = Board()
+	defaultBoard = Board('board_values.csv')
 	sudokuApp = QtWidgets.QApplication(sys.argv)
 	gui = Window()
 	sys.exit(sudokuApp.exec_())

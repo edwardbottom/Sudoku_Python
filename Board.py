@@ -64,7 +64,12 @@ class Board:
     for x in range(0,9): 
       for y in range(0,9):
         val = self.board[x][y].value
-        isPlay = self.board[x][y].isPlayable()
+        isPlay = self.board[x][y].isPlayable
+        if isPlay == "FALSE":
+          isPlay = False
+        else:
+          isPlay = True
+        
         vals.append(val)
         vals.append(isPlay)
     df = pd.DataFrame(vals)
@@ -161,7 +166,7 @@ class Board:
     return self.isValidBox() and self.isValidHorz() and self.isValidVert()
 
 
-Board().printBoard()
+# Board().printBoard()
 
 
 
