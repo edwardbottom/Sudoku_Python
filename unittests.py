@@ -4,9 +4,9 @@ from Board import Board
 
 class EndGameTest(unittest.TestCase):
 	failBoard = Board()
-	#failBoard.load('fail_board.csv')
+	failBoard.load('fail_board.csv')
 	successBoard = Board()
-	#successBoard.load('success_board.csv')
+	successBoard.load('success_board.csv')
 	
 	def test_is_horiz_fail(self):
 		self.assertFalse(self.failBoard.isValidHoriz())
