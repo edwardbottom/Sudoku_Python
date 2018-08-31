@@ -41,6 +41,7 @@ class Board:
         row.append(Cell(val,isPlay))
         counter += 2
       self.board.append(row)
+      return True
 
   def load(self, file_name):
     self.board = []
@@ -56,6 +57,7 @@ class Board:
         row.append(Cell(val,isPlay))
         counter += 2
       self.board.append(row)
+      return True
   
   def save(self, file_name):
     vals = []
@@ -68,6 +70,7 @@ class Board:
     df = pd.DataFrame(vals)
     df.columns = ['b']
     df.to_csv(file_name)
+    return True
   
   def isValidHorz(self):
     s = set()
