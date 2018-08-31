@@ -10,7 +10,7 @@ class Cell:
   	return self.value
 
   def setValue(self, val):
-  	if(self.isPlayable):
+  	if(self.isPlayable and self.val > 0 and self.val < 10):
   		self.value = val
   		return True
   	else:
