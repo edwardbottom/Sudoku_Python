@@ -3,9 +3,9 @@ import pandas as pd
 
 
 class Board:
-  def __init__(self):
+  def __init__(self, file_name):
     self.board = []
-    vals = pd.read_csv('board_values.csv')
+    vals = pd.read_csv(file_name)
     vals_length = vals.count().astype(int)
     counter = 0
     for x in range(0,9): 
@@ -28,9 +28,9 @@ class Board:
           string += ' ' + str(self.board[y][x].value)
       print(string)
 
-  def clear(self):
+  def clear(self, file_name):
     self.board = []
-    vals = pd.read_csv('board_values.csv')
+    vals = pd.read_csv(file_name)
     vals_length = int(vals.count())
     counter = 0
     for x in range(0,9): 
@@ -42,9 +42,9 @@ class Board:
         counter += 2
       self.board.append(row)
 
-  def load(self):
+  def load(self, file_name):
     self.board = []
-    vals = pd.read_csv('board_values.csv')
+    vals = pd.read_csv(file_name)
     vals_length = vals.count().astype(int)
     counter = 0
     for x in range(0,9): 
