@@ -6,69 +6,72 @@ class Board:
   def __init__(self):
     self.board = []
     vals = pd.read_csv('board_values.csv')
+    vals_length = vals.count().astype(int)
+    counter = 0
+    for x in range(0,9): 
+      row=[]
+      for y in range(0,9):
+        val = vals['b'][counter]
+        # val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
+        row.append(Cell(val,False))
+        counter += 1
+      self.board.append(row)
+
+  def printBoard(self):
+    for y in range(0,9):
+      string =''
+      for x in range(0,9):
+        if self.board[y][x].value == 0:
+          string += ' '
+        else:
+          string += ' ' + str(self.board[y][x].value)
+      print(string)
+
+  def clear(self):
+    self.board = []
+    vals = pd.read_csv('board_values.csv')
     vals_length = int(vals.count())
     counter = 0
     for x in range(0,9): 
-    	row=[]
-    	for y in range(0,9):
-    		val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
-    		row.append(Cell(val,False))
-    		counter += 1
-    	self.board.append(row)
-
-  def printBoard(self):
-  	for y in range(0,9):
-  		string =''
-  		for x in range(0,9):
-  			if self.board[x][y].value == 0:
-  				string += ' '
-  			else:
-  				string += ' ' + str(self.board[x][y].value)
-  		print(string)
-
-  def clear(self):
-  	self.board = []
-  	vals = pd.read_csv('board_values.csv')
-  	vals_length = int(vals.count())
-  	counter = 0
-  	for x in range(0,9): 
-  		row=[]
-  		for y in range(0,9):
-  			val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
-  			row.append(Cell(val,False))
-  			counter += 1
-  		self.board.append(row)
+      row=[]
+      for y in range(0,9):
+        val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
+        row.append(Cell(val,False))
+        counter += 1
+      self.board.append(row)
 
   def load(self):
-  	self.board = []
-  	vals = pd.read_csv('board_values.csv')
-  	vals_length = int(vals.count())
-  	counter = 0
-  	for x in range(0,9): 
-  		row=[]
-  		for y in range(0,9):
-  			val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
-  			row.append(Cell(val,False))
-  			counter += 1
-  			self.board.append(row)
+    self.board = []
+    vals = pd.read_csv('board_values.csv')
+    vals_length = vals.count().astype(int)
+    counter = 0
+    for x in range(0,9): 
+      row=[]
+      for y in range(0,9):
+        # val = int(str(vals.values[(counter)]).strip("[]").strip("''"))
+        val = vals['b'][counter]
+        row.append(Cell(val,False))
+        counter += 1
+      self.board.append(row)
   
   def save(self, file_name):
-  	vals = []
-  	for x in range(0,9): 
-  		for y in range(0,9):
-  			val = self.board[x][y].value
-  			vals.append(val)
-  	df = pd.DataFrame(vals)
-  	df.to_csv(file_name)
+    vals = []
+    for x in range(0,9): 
+      for y in range(0,9):
+        val = self.board[x][y].value
+        vals.append(val)
+    df = pd.DataFrame(vals)
+    df.columns = ['b']
+    df.to_csv(file_name)
   
   def isValidHorz(self):
-  	s = set()
-  	for y in range(0,9):
-  		for x in range(0,9):
-  			if self.board[x][y].value > 9 or self.board[x][y].value < 1 or not s.add(self.board[x][y].value):
-  				return False
-  		s.clear()
-  	return True
+    s = set()
+    for y in range(0,9):
+      for x in range(0,9):
+        if self.board[x][y].value > 9 or self.board[x][y].value < 1 or not s.add(self.board[x][y].value):
+          return False
+      s.clear()
+    return True
 
   def isValidVert(self):
     s = set()
@@ -149,4 +152,3 @@ class Board:
   def isCorrect(self):
     return self.isValidBox() and self.isValidHorz() and self.isValidVert()
 
-Board().save("board_values.csv")
