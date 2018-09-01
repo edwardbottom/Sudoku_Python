@@ -86,24 +86,26 @@ class Board:
         if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or not s.add(self.board[x][y].value):
           return False
       s.clear()
+    print("Horizontal Success!")
     return True
 
   def isValidVert(self):
     s = set()
     for x in range(0,9):
-        for y in range(0,9):
-            if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or not s.add(self.board[x][y].value):
-                return False
-        s.clear()
+      for y in range(0,9):
+        if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or not s.add(self.board[x][y].value):
+          return False
+      s.clear()
+
     return True
 
   def isValidBox(self):
     s = set()
     #upper left box
     for x in range(0,3):
-        for y in range(0,3):
-            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
-                return False
+      for y in range(0,3):
+        if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or not s.add(self.board[y][x].value):
+          return False
     s.clear()
 
     #upper middle box
@@ -166,7 +168,6 @@ class Board:
 
   def isCorrect(self):
     return self.isValidBox() and self.isValidHorz() and self.isValidVert()
-
 
 
 

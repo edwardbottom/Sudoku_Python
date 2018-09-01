@@ -3,13 +3,12 @@ from Board import Board
 
 
 class EndGameTest(unittest.TestCase):
-	failBoard = Board()
-	failBoard.load('fail_board.csv')
-	successBoard = Board()
-	successBoard.load('success_board.csv')
+	failBoard = Board("test_board_false.csv")
+	successBoard = Board("completed_game.csv")
+
 	
 	def test_is_horiz_fail(self):
-		self.assertFalse(self.failBoard.isValidHoriz())
+		self.assertFalse(self.failBoard.isValidHorz())
 
 	def test_is_vert_fail(self):
 		self.assertFalse(self.failBoard.isValidVert())
@@ -18,7 +17,7 @@ class EndGameTest(unittest.TestCase):
 		self.assertFalse(self.failBoard.isValidBox())
 	
 	def test_is_horiz_success(self):
-		self.assertTrue(self.successBoard.isValidHoriz())
+		self.assertTrue(self.successBoard.isValidHorz())
 
 	def test_is_vert_success(self):
 		self.assertTrue(self.successBoard.isValidVert())
@@ -27,13 +26,13 @@ class EndGameTest(unittest.TestCase):
 		self.assertTrue(self.successBoard.isValidBox())
 
 	def test_clear_is_working(self):
-		self.assertTrue(self.failBoard.clear())
+		self.assertTrue(self.failBoard.clear("test_board_false.csv"))
 
 	def test_save_is_working(self):
 		self.assertTrue(self.failBoard.save("save.csv"))
 
 	def test_load_is_working(self):
-		self.assertTrue(self.failBoard.load())
+		self.assertTrue(self.failBoard.load("test_board_false.csv"))
 
 
 if __name__ == '__main__':
