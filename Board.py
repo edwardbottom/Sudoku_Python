@@ -104,14 +104,14 @@ class Board:
     #upper left box
     for x in range(0,3):
       for y in range(0,3):
-        if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or s.add(self.board[y][x].value) == False:
+        if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or s.add(self.board[x][y].value) == False:
           return False
     s.clear()
 
     #upper middle box
     for x in range(3,6):
         for y in range(0,3):
-            if int(self.board[y][x].value) > 9 or int(self.board[y][x].value) < 1 or s.add(self.board[y][x].value) == False:
+            if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or s.add(self.board[x][y].value) == False:
                 return False
     s.clear()
 
