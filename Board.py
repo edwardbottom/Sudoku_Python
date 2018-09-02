@@ -55,9 +55,10 @@ class Board:
   #loads a previously saved game from a csv
   def load(self, file_name):
     #checks if the csv exists
-    self.board = []
+    
     if not os.path.isfile(file_name):
       return False
+    self.board = []
     vals = pd.read_csv(file_name)
     vals_length = vals.count().astype(int)
     counter = 0
