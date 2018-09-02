@@ -50,7 +50,7 @@ class Board:
         row.append(Cell(val,isPlay))
         counter += 2
       self.board.append(row)
-      return True
+    return True
 
   #loads a previously saved game from a csv
   def load(self, file_name):
@@ -81,10 +81,6 @@ class Board:
       for y in range(0,9):
         val = self.board[x][y].value
         isPlay = self.board[x][y].isPlayable
-        if isPlay == "FALSE":
-          isPlay = False
-        else:
-          isPlay = True
         
         vals.append(val)
         vals.append(isPlay)

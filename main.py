@@ -72,7 +72,7 @@ class Window(QtWidgets.QWidget):
 				if cell.isPlayable == "TRUE":
 					item.setText("")
 					item.setTextAlignment(QtCore.Qt.AlignCenter)
-					cell.setValue(0)
+					cell.value = 0
 
 	#updates a cell in the ui
 	def change(self, row, col):
