@@ -45,8 +45,6 @@ class Window(QtWidgets.QWidget):
 
 				#mark appropriate cells as not playable
 				if cell.isPlayable == "FALSE":
-					if row == 0:
-						print("col: " + str(col))
 					gridItem = self.sudokuGrid.item(row, col)
 					gridItem.setFlags(QtCore.Qt.ItemIsEnabled)
 
@@ -114,14 +112,11 @@ class Window(QtWidgets.QWidget):
 
 		result = defaultBoard.load(filename)
 
-		print(defaultBoard.board)
-
 		if result:
 			self.updateGrid(defaultBoard)
 			QtWidgets.QMessageBox().about(self, "Success!", str(filename) + " loaded successfully")
 		else:
 			QtWidgets.QMessageBox().about(self, "Failure", "Unable to load: " + str(filename))
-			print("load error")
 
 	#checks to see if a submited board is valid
 	def submit(self):
@@ -130,7 +125,7 @@ class Window(QtWidgets.QWidget):
 		#if the solution is valid, an image of Dan pops up
 		if result:
 			box = QtWidgets.QMessageBox()
-			image = QPixmap("dan_photo.jpg")
+			image = QtGui.QPixmap("dan_photo.jpg")
 			scaledImage = image.scaled(QtCore.QSize(700,700),  QtCore.Qt.KeepAspectRatio)
 			box.setIconPixmap(scaledImage)
 			box.show()
