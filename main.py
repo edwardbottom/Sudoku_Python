@@ -70,7 +70,7 @@ class Window(QtWidgets.QWidget):
 	#updates a cell in the ui
 	def change(self, row, col):
 		
-		#get the 
+		#get the cell that the user is trying to change
 		item = self.sudokuGrid.item(row, col)
 		userInput = item.text()
 		cell = defaultBoard.board[row][col]
