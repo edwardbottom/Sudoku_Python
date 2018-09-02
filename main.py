@@ -45,7 +45,16 @@ class Window(QtWidgets.QWidget):
 
 				#mark appropriate cells as not playable
 				if cell.isPlayable == "FALSE":
-					self.sudokuGrid.item(row, col).setFlags(QtCore.Qt.ItemIsEnabled)
+					if row == 0:
+						print("col: " + str(col))
+					gridItem = self.sudokuGrid.item(row, col)
+					gridItem.setFlags(QtCore.Qt.ItemIsEnabled)
+
+					#make it bold and blue
+					gridItem.setForeground(QtGui.QBrush(QtGui.QColor("#120ed6")))
+					font = QtGui.QFont()
+					font.setBold(True)
+					gridItem.setFont(font)
 				
 		self.show()
 
@@ -91,14 +100,28 @@ class Window(QtWidgets.QWidget):
 	#saves the game to a csv
 	def save(self):
 		filename = self.saveText.text()
-		# print(filename)
-		defaultBoard.save(filename)
+
+		result = defaultBoard.save(filename)
+
+		if result:
+			QtWidgets.QMessageBox().about(self, "Success!", "Succesfully saved to: " + str(filename))
+		else:
+			QtWidgets.QMessageBox().about(self, "Failure", "Unable to save: " + str(filename))
 
 	#loads in a csv as a playable game
 	def load(self):
 		filename = self.loadText.text()
-		defaultBoard.load(filename)
-		self.updateGrid(defaultBoard)
+
+		result = defaultBoard.load(filename)
+
+		print(defaultBoard.board)
+
+		if result:
+			self.updateGrid(defaultBoard)
+			QtWidgets.QMessageBox().about(self, "Success!", str(filename) + " loaded successfully")
+		else:
+			QtWidgets.QMessageBox().about(self, "Failure", "Unable to load: " + str(filename))
+			print("load error")
 
 	#checks to see if a submited board is valid
 	def submit(self):
