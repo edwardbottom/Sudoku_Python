@@ -97,8 +97,6 @@ class Board:
       for x in range(0,9):
         #if a number isnt valid
         if int(self.board[x][y].value) > 9 or int(self.board[x][y].value) < 1 or s.add(self.board[x][y].value) == False:
-          print(self.board[x][y].value + " is the value")
-          print("horz fail at" + str(x) + " " + str(y))
           return False
       s.clear()
     return True
