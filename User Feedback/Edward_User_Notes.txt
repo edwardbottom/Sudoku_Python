@@ -1,0 +1,13 @@
+Our first user, Shannon began her test by commenting the the design "looks fine", and found the game overall enjoyable. She had
+some trouble with the submit button, thinking that it did not work. However, she soon realized her mistake. She found it "really easy to
+use" and stated "I love the colors" and "the blue is nice". She especially liked the "really helpful bold letters" and found that it to
+be a "fun game".
+
+Our second user Porter, stated "I haven't played Sudoku in so long" and that it was "so hard". He asked about a subscript option, which
+we may consider implementing in the future. He stated "numbers input well" and was glad that the return button also functioned as 
+a submit button. He went as far as saying it was "almost fun" and "the best he has ever done in Sudoku". His final remark was that it 
+was a "good game".
+
+Our third user, Julia started off the game by planning her strategy. She stated she was going to "start with the ones" but later stated it
+was a "bad idea" and then that she "found a two". She seemed very engaged in the game, but requested that we make the screen larger, so 
+we increased the size of the gui after her test. She said the game "works well" even if she wasnt good at Sudoku. 
