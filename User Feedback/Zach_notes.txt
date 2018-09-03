@@ -1,0 +1,25 @@
+User Feedback
+
+User #1 (Shannon)
+- design looks fine
+- easy to use
+- nice colors
+- likes that the ones you can't change are bold
+
+User #2 (Porter)
+- hasn't played sudoku in a long time
+- subscript options?
+- numbers input well
+- likes that return button works
+- almost fun
+
+User #3 (Julia)
+- user said it's exciting
+- game's working really well
+- font is a bit small, make screen bigger
+
+
+Improvements made:
+- Didn't implement subscripts (out of scope for this project)
+- Made board, numbers bigger so they are easier to see
+ 
