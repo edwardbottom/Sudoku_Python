@@ -98,6 +98,9 @@ class Window(QtWidgets.QWidget):
 	#saves the game to a csv
 	def save(self):
 		filename = self.saveText.text()
+		if filename == '':
+			QtWidgets.QMessageBox().about(self, "Failure", "Please enter a file name")
+			return
 
 		result = defaultBoard.save(filename)
 
